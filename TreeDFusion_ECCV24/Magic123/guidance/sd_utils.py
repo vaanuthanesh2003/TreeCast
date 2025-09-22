@@ -170,7 +170,7 @@ class StableDiffusion(nn.Module):
         self.tokenizer = pipe.tokenizer
         self.text_encoder = pipe.text_encoder
         self.unet = pipe.unet
-        self.unet.load_attn_procs("tree_lora")
+        self.unet.load_attn_procs("rakaaa/tree-lora")
         logger.info("TREE LORA LOADED!!!!")
         if kwargs.get('learned_embeds_path', None) is not None:
             learned_embeds_path = kwargs['learned_embeds_path']
