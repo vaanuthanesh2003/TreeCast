@@ -32,3 +32,4 @@ albucore==0.0.12
 opencv-python==4.8.1.78
 opencv-python-headless==4.8.1.78
 numpy==1.25.0
+peft
