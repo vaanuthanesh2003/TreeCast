@@ -14,6 +14,6 @@ pip install build
 pip install cmake
 pip install wheel
 pip install ninja
-pip install torch==2.2.2+cu121 torchvision==0.17.2+cu121 torchaudio==2.2.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
+pip install torch==2.5.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install -r Magic123/requirements.txt --no-build-isolation
 pip install -r zero123/zero123/requirements.txt --no-build-isolation
