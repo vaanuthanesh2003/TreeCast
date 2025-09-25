@@ -17,3 +17,10 @@ pip install ninja
 pip install torch==2.5.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install -r Magic123/requirements.txt --no-build-isolation
 pip install -r zero123/zero123/requirements.txt --no-build-isolation
+cd zero123/zero123
+git clone https://github.com/CompVis/taming-transformers.git
+pip install -e taming-transformers/
+git clone https://github.com/openai/CLIP.git
+pip install -e CLIP/
+wget https://cv.cs.columbia.edu/zero123/assets/105000.ckpt
+cd ../..
