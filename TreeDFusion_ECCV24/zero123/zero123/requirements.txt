@@ -29,7 +29,7 @@ rembg
 onnxruntime
 albumentations==1.3.1
 albucore==0.0.12
-opencv-python==4.8.1.78
-opencv-python-headless==4.8.1.78
+opencv-python==4.9.0.80
+opencv-python-headless==4.9.0.80
 numpy==1.25.0
 peft
