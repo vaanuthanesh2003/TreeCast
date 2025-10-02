@@ -1,0 +1,6 @@
+__pycache__/
+venv*
+myCity_outputs/*
+*.log
+*.pth
+*.ckpt

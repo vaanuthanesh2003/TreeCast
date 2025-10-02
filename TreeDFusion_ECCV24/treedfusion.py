@@ -29,6 +29,9 @@ if __name__ == "__main__":
     parser.add_argument('--city', type=str, default='myCity',
                         help='A city name.')
 
+    parser.add_argument('--train', action='store_true', 
+                        help="Enable training mode (default: False)")
+
     parser.add_argument('--start_idx', type=int,
                         help='data image start idx')
     parser.add_argument('--end_idx', type=int,
@@ -100,34 +103,45 @@ if __name__ == "__main__":
     logger.info(f"clean_image: {clean_image}")
     print("Step3. Now, we are running the AI model to generate a 3D model.")
     
-    cmd = f'python Magic123/main.py -O\
-    --text {prompt}\
-    --sd_version 1.5\
-    --image {clean_image}\
-    --workspace {save_path}/{RUN_ID}\
-    --optim adam\
-    --iters 2000\
-    --h 64\
-    --w 64\
-    --mcubes_resolution 128\
-    --guidance SD zero123\
-    --lambda_guidance 1.0 8.0\
-    --guidance_scale 20.0 5.0\
-    --latent_iter_ratio 0\
-    --t_range 0.2 0.6\
-    --lambda_depth 0\
-    --lambda_depth_mse 0\
-    --lambda_normal 0\
-    --lambda_normal_smooth 0\
-    --lambda_normal_smooth2d 0\
-    --lambda_mask 20.0\
-    --lambda_rgb 5.0\
-    --lambda_opacity 0.01\
-    --bg_radius -1\
-    --blob_density 8 --blob_radius 0.35\
-    --save_mesh\
-    --zero123_config zero123/zero123/configs/sd-objaverse-finetune-c_concat-256.yaml\
-    --zero123_ckpt ./tree.ckpt'
+    if not args.train:
+        cmd = f'python Magic123/main.py -O \
+        --text {prompt} \
+        --sd_version 1.5 \
+        --image {clean_image} \
+        --workspace {save_path}/{RUN_ID} \
+        --save_mesh \
+        --zero123_config zero123/zero123/configs/sd-objaverse-finetune-c_concat-256.yaml \
+        --zero123_ckpt ./tree.ckpt \
+        --test'
+    else:
+        cmd = f'python Magic123/main.py -O\
+        --text {prompt}\
+        --sd_version 1.5\
+        --image {clean_image}\
+        --workspace {save_path}/{RUN_ID}\
+        --optim adam\
+        --iters 2000\
+        --h 64\
+        --w 64\
+        --mcubes_resolution 128\
+        --guidance SD zero123\
+        --lambda_guidance 1.0 8.0\
+        --guidance_scale 20.0 5.0\
+        --latent_iter_ratio 0\
+        --t_range 0.2 0.6\
+        --lambda_depth 0\
+        --lambda_depth_mse 0\
+        --lambda_normal 0\
+        --lambda_normal_smooth 0\
+        --lambda_normal_smooth2d 0\
+        --lambda_mask 20.0\
+        --lambda_rgb 5.0\
+        --lambda_opacity 0.01\
+        --bg_radius -1\
+        --blob_density 8 --blob_radius 0.35\
+        --save_mesh\
+        --zero123_config zero123/zero123/configs/sd-objaverse-finetune-c_concat-256.yaml\
+        --zero123_ckpt ./tree.ckpt'
 
     os.system(cmd)
     gen_end = time.time()-start
