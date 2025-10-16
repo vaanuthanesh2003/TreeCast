@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.14)
+project(shape_growth_cadmium CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Adjust these to your local Cadmium/NDTime paths if not installed system-wide
+# Example if you have the usual course template layout:
+# include_directories(${CMAKE_SOURCE_DIR}/vendor/cadmium/include)
+# include_directories(${CMAKE_SOURCE_DIR}/vendor/DESTimes/include)
+
+include_directories(
+  ${CMAKE_SOURCE_DIR}/include
+  # <- Add your Cadmium and DESTimes (NDTime) include roots here:
+  # ${CMAKE_SOURCE_DIR}/cadmium/include
+  # ${CMAKE_SOURCE_DIR}/DESTimes/include
+)
+
+file(GLOB SRC src/*.cpp)
+add_executable(shape_growth ${SRC})
+
+# If Cadmium is header-only (typical), you don't need target_link_libraries.
+# Otherwise link whatever your template requires.
